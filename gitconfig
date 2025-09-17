@@ -1,0 +1,68 @@
+[user]
+  name = Brent
+  email = brent@gmail.com
+[core]
+  editor = mate -w
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  autocrlf = input
+  safecrlf = true
+[init]
+  defaultBranch = main
+[push]
+  default = current
+[pull]
+  rebase = true
+[color]
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "status"]
+  added = bold blue
+  changed = green
+  untracked = cyan
+[alias]
+  mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+  standup = shortlog --since='yesterday' --author='brent'
+  lm = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  ln = log --decorate=short --pretty=oneline --name-only
+  la = log --pretty='format:%h - a:%an c:%cn, %ar : %s'
+  g = log --oneline --graph --decorate --all
+  o = log --oneline
+  ref = log -g --pretty='format:%Cgreen%H%Creset - %an, %ar%n %s %gD %n'
+  last = log -1 HEAD
+  st = status
+  dc = diff --cached
+  ci = commit -v
+  co = checkout
+  unstage = reset HEAD --
+  undo = reset --soft HEAD~1
+  ls = branch -v --list --all
+  merged = branch -v --all --merged
+  unmerg = branch -v --all --no-merged
+  b = !git --no-pager blame
+  nb = "!git checkout -b $1_brentgreeff_$(date +%Y%m%d); :"
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+  lg = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ll = log --stat --abbrev-commit
+  l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  llg = log --color --graph --pretty=format:'%C(bold white)%H %d%Creset%n%s%n%+b%C(bold blue)%an <%ae>%Creset %C(bold green)%cr (%ci)' --abbrev-commit
+  master = checkout master
+  remotes = remote -v
+  s = status
+  c = commit
+  a = !git add . && git status
+  ac = !git add . && git commit -v
+  log = !git --no-pager log
+  d = diff
+  ca = commit --amend
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
+  ignored = !git ls-files -v | grep "^[[:lower:]]"

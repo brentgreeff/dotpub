@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+  then
+    echo "PUT what?"
+    exit
+fi
+
+couch='http://127.0.0.1:5984'
+
+set -x
+http PUT $couch/$1 $2 -j
+
+# curl -vX PUT http://127.0.0.1:5984/albums/BiffyClyro/artwork.jpg?rev=2-f18c599bff6cfac3a0f0329d1c83d5e4 --data-binary @smash.jpg -H "Content-Type:image/jpg"
+
+
+# http -f put $couch/albums/smash/artwork.jpg?rev=3-bb3a4264df2f0c7901ff3e58b0acf2ba content_type='image/jpg' < smash.jpg

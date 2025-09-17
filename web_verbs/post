@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+  then
+    echo "POST what?"
+    exit
+fi
+
+# couch='http://127.0.0.1:5984'
+tt='http://localhost:3000'
+
+set -x
+http POST $tt/$1 Content-Type:application/graphql $2 $3 $4
+
+# post _replicate source=$couch/albums target=$couch/albums

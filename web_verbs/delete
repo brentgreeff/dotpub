@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+  then
+    echo "DELETE what?"
+    exit
+fi
+
+couch='http://127.0.0.1:5984'
+
+set -x
+http DELETE $couch/$1 -j $2

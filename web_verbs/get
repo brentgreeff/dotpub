@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# couch='http://127.0.0.1:5984'
+tt='http://localhost:3000'
+
+set -x
+http GET $tt/$1 Content-Type:application/graphql $2
+
+curl -X POST \
+-H 'Content-Type: application/json' \
+-d '{"start":111,"id":"2c43306e-5b44-4ff8-8753"}' \
+localhost:3000/api/timers/start
